@@ -11,19 +11,12 @@ import java.util.List;
 
 public class PersonaDAO {
 
-<<<<<<< HEAD
     Conexion conexion = new Conexion();
 
     public Persona obtenerPorCodigo(int codigo) throws SQLException {
         // Consulta a la base de datos
         String sql = "SELECT codigo, nombre, apellido, titulo, descripcion, email, telefono, ubicacion, url_instagram, url_github, url_linkedin, contraseña, url_foto FROM personas WHERE codigo = ?";
-        try (Connection conn = conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-=======
-    public Persona obtenerPorCodigo(int codigo) throws SQLException {
-        // Consulta a la base de datos
-        String sql = "SELECT codigo, nombre, apellido, titulo, descripcion, email, telefono, ubicacion, url_instagram, url_github, url_linkedin, contraseña, url_foto FROM personas WHERE codigo = ?";
         try (Connection conn = Conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
->>>>>>> main
             pstmt.setInt(1, codigo);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
@@ -53,11 +46,8 @@ public class PersonaDAO {
         // Sentencia SQL para actualizar los datos de una persona
         String sql = "UPDATE personas SET nombre = ?, apellido = ?, titulo = ?, descripcion = ?, email = ?, telefono = ?, ubicacion = ?, url_instagram = ?, url_github = ?, url_linkedin = ?, contraseña = ?, url_foto = ? "
                 + "WHERE codigo = ?";
-<<<<<<< HEAD
-        try (Connection conn = conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-=======
         try (Connection conn = Conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
->>>>>>> main
+
             // Establecer los valores de los parámetros de la sentencia SQL
             pstmt.setString(1, persona.getNombre());
             pstmt.setString(2, persona.getApellido());
@@ -81,11 +71,8 @@ public class PersonaDAO {
         List<Persona> personas = new ArrayList<>();
         // Consulta a la base de datos
         String sql = "SELECT codigo, nombre, apellido, titulo, descripcion, email, telefono, ubicacion, url_instagram, url_github, url_linkedin FROM personas";
-<<<<<<< HEAD
-        try (Connection conn = conexion.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
-=======
         try (Connection conn = Conexion.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
->>>>>>> main
+
             while (rs.next()) {
                 // Creación del objeto persona a partir de los resultados de la consulta
                 int codigo = rs.getInt("codigo");
