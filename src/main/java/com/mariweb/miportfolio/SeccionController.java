@@ -6,7 +6,10 @@ package com.mariweb.miportfolio;
 
 import clases.Seccion;
 import java.sql.SQLException;
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> main
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +29,7 @@ public class SeccionController {
         SeccionDAO seccionDAO = new SeccionDAO();
         return seccionDAO.obtenerPorCodigoPersona(codigoPersona, codigoSeccion);
     }
+<<<<<<< HEAD
 
     @GetMapping("/obtener-secciones")
     public List<Seccion> obtenerSecciones() throws SQLException {
@@ -38,4 +42,6 @@ public class SeccionController {
         SeccionDAO seccionDAO = new SeccionDAO();
         return seccionDAO.obtenerSeccionesPorCodigoPersona(codigoPersona);
     }
+=======
+>>>>>>> main
 }

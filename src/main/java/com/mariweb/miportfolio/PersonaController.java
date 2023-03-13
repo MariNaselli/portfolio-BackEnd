@@ -11,6 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+<<<<<<< HEAD
+=======
+import org.springframework.web.bind.annotation.PostMapping;
+>>>>>>> main
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +31,11 @@ public class PersonaController {
 
     @GetMapping("/listar-personas")
     public List<Persona> getPersonas() throws SQLException {
+<<<<<<< HEAD
         PersonaDAO personaDAO = new PersonaDAO();
+=======
+        PersonaDAO personaDAO = null;
+>>>>>>> main
         return personaDAO.listarPersonas();
     }
 

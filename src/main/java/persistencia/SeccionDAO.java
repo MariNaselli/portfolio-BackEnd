@@ -10,11 +10,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+<<<<<<< HEAD
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+=======
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> main
 
 /**
  *
@@ -22,8 +27,11 @@ import java.util.Map;
  */
 public class SeccionDAO {
 
+<<<<<<< HEAD
     Conexion conexion = new Conexion();
 
+=======
+>>>>>>> main
     public Seccion obtenerPorCodigoPersona(int _codigoPersona, int _codigoSeccion) throws SQLException {
         // Consulta a la base de datos
         String sql = "SELECT s.codigo_seccion, s.nombre_seccion, s.orden, "
@@ -33,7 +41,11 @@ public class SeccionDAO {
                 + "WHERE i.codigo_persona = ? "
                 + "AND s.codigo_seccion = ? "
                 + "AND i.eliminado = 0";
+<<<<<<< HEAD
         try (Connection conn = conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+=======
+        try (Connection conn = Conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+>>>>>>> main
             pstmt.setInt(1, _codigoPersona);
             pstmt.setInt(2, _codigoSeccion);
             ResultSet rs = pstmt.executeQuery();
@@ -62,6 +74,7 @@ public class SeccionDAO {
         }
     }
 
+<<<<<<< HEAD
     public List<Seccion> obtenerSeccionesPorCodigoPersona(int _codigoPersona) throws SQLException {
         // Consulta a la base de datos
         String sql = "SELECT s.codigo_seccion, s.nombre_seccion, s.orden, "
@@ -112,4 +125,6 @@ public class SeccionDAO {
         }
         return secciones;
     }
+=======
+>>>>>>> main
 }
