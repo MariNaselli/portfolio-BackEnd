@@ -16,7 +16,7 @@ public class PersonaDAO {
     public Persona obtenerPorCodigo(int codigo) throws SQLException {
         // Consulta a la base de datos
         String sql = "SELECT codigo, nombre, apellido, titulo, descripcion, email, telefono, ubicacion, url_instagram, url_github, url_linkedin, contraseña, url_foto FROM personas WHERE codigo = ?";
-        try (Connection conn = conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = Conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, codigo);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
@@ -46,7 +46,8 @@ public class PersonaDAO {
         // Sentencia SQL para actualizar los datos de una persona
         String sql = "UPDATE personas SET nombre = ?, apellido = ?, titulo = ?, descripcion = ?, email = ?, telefono = ?, ubicacion = ?, url_instagram = ?, url_github = ?, url_linkedin = ?, contraseña = ?, url_foto = ? "
                 + "WHERE codigo = ?";
-        try (Connection conn = conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = Conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             // Establecer los valores de los parámetros de la sentencia SQL
             pstmt.setString(1, persona.getNombre());
             pstmt.setString(2, persona.getApellido());
@@ -70,7 +71,8 @@ public class PersonaDAO {
         List<Persona> personas = new ArrayList<>();
         // Consulta a la base de datos
         String sql = "SELECT codigo, nombre, apellido, titulo, descripcion, email, telefono, ubicacion, url_instagram, url_github, url_linkedin FROM personas";
-        try (Connection conn = conexion.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = Conexion.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+
             while (rs.next()) {
                 // Creación del objeto persona a partir de los resultados de la consulta
                 int codigo = rs.getInt("codigo");
