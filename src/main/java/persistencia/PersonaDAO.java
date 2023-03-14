@@ -11,6 +11,8 @@ import java.util.List;
 
 public class PersonaDAO {
 
+    Conexion conexion = new Conexion();
+
     public Persona obtenerPorCodigo(int codigo) throws SQLException {
         // Consulta a la base de datos
         String sql = "SELECT codigo, nombre, apellido, titulo, descripcion, email, telefono, ubicacion, url_instagram, url_github, url_linkedin, contraseña, url_foto FROM personas WHERE codigo = ?";
@@ -45,6 +47,7 @@ public class PersonaDAO {
         String sql = "UPDATE personas SET nombre = ?, apellido = ?, titulo = ?, descripcion = ?, email = ?, telefono = ?, ubicacion = ?, url_instagram = ?, url_github = ?, url_linkedin = ?, contraseña = ?, url_foto = ? "
                 + "WHERE codigo = ?";
         try (Connection conn = Conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             // Establecer los valores de los parámetros de la sentencia SQL
             pstmt.setString(1, persona.getNombre());
             pstmt.setString(2, persona.getApellido());
@@ -69,6 +72,7 @@ public class PersonaDAO {
         // Consulta a la base de datos
         String sql = "SELECT codigo, nombre, apellido, titulo, descripcion, email, telefono, ubicacion, url_instagram, url_github, url_linkedin FROM personas";
         try (Connection conn = Conexion.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+
             while (rs.next()) {
                 // Creación del objeto persona a partir de los resultados de la consulta
                 int codigo = rs.getInt("codigo");
