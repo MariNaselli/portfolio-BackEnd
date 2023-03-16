@@ -33,7 +33,8 @@ public class SeccionDAO {
                 + "WHERE i.codigo_persona = ? "
                 + "AND s.codigo_seccion = ? "
                 + "AND i.eliminado = 0";
-        try (Connection conn = conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        try (Connection conn = Conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, _codigoPersona);
             pstmt.setInt(2, _codigoSeccion);
             ResultSet rs = pstmt.executeQuery();
@@ -52,7 +53,8 @@ public class SeccionDAO {
                     String url = rs.getString("url");
                     int nivelProgreso = rs.getInt("nivel_progreso");
                     int eliminado = rs.getInt("eliminado");
-                    items.add(new Item(codigoItem, nombre, titulo, periodo, descripcion, url, nivelProgreso, eliminado, _codigoPersona, codigoSeccion));
+                    items.add(new Item(codigoItem, nombre, titulo, periodo, descripcion, url, nivelProgreso, eliminado,
+                            _codigoPersona, codigoSeccion));
                 } while (rs.next());
 
                 return new Seccion(codigoSeccion, nombreSeccion, orden, items);
@@ -70,7 +72,7 @@ public class SeccionDAO {
                 + "INNER JOIN items i ON s.codigo_seccion = i.codigo_seccion "
                 + "WHERE i.codigo_persona = ? "
                 + "AND i.eliminado = 0";
-        try (Connection conn = conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = Conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, _codigoPersona);
             ResultSet rs = pstmt.executeQuery();
             Map<Integer, Seccion> seccionesMap = new HashMap<>();
@@ -90,7 +92,8 @@ public class SeccionDAO {
                 String url = rs.getString("url");
                 int nivelProgreso = rs.getInt("nivel_progreso");
                 int eliminado = rs.getInt("eliminado");
-                seccionesMap.get(codigoSeccion).addItem(new Item(codigoItem, nombre, titulo, periodo, descripcion, url, nivelProgreso, eliminado, _codigoPersona, codigoSeccion));
+                seccionesMap.get(codigoSeccion).addItem(new Item(codigoItem, nombre, titulo, periodo, descripcion, url,
+                        nivelProgreso, eliminado, _codigoPersona, codigoSeccion));
             }
             return new ArrayList<>(seccionesMap.values());
         }
@@ -100,7 +103,9 @@ public class SeccionDAO {
         List<Seccion> secciones = new ArrayList<>();
 
         String sql = "select s.codigo_seccion, s.nombre_seccion, s.orden from secciones s ORDER BY S.orden";
-        try (Connection conn = conexion.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection conn = Conexion.getConnection();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 // Creación del objeto persona a partir de los resultados de la consulta
                 int codigo_seccion = rs.getInt("codigo_seccion");
