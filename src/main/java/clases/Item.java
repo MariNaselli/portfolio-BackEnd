@@ -114,5 +114,9 @@ public class Item {
     public void setCodigo_seccion(int codigo_seccion) {
         this.codigo_seccion = codigo_seccion;
     }
+
+    public void setCodigo(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
 

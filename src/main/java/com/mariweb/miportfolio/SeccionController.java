@@ -7,6 +7,7 @@ package com.mariweb.miportfolio;
 import clases.Seccion;
 import java.sql.SQLException;
 import java.util.List;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,8 @@ import persistencia.SeccionDAO;
 public class SeccionController {
 
     @GetMapping("/seccion/{codigoSeccion}/persona/{codigoPersona}")
-    public Seccion obtenerPorCodigoPersona(@PathVariable int codigoPersona, @PathVariable int codigoSeccion) throws SQLException {
+    public Seccion obtenerPorCodigoPersona(@PathVariable int codigoPersona, @PathVariable int codigoSeccion) 
+            throws SQLException {
         SeccionDAO seccionDAO = new SeccionDAO();
         return seccionDAO.obtenerPorCodigoPersona(codigoPersona, codigoSeccion);
     }
@@ -38,4 +40,6 @@ public class SeccionController {
         SeccionDAO seccionDAO = new SeccionDAO();
         return seccionDAO.obtenerSeccionesPorCodigoPersona(codigoPersona);
     }
+    
+ 
 }
