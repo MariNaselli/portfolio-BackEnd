@@ -30,7 +30,7 @@ public class Conexion {
         // Conexión a la base de datos
         String url = "jdbc:mysql://127.0.0.1:3306/portfolio_web";
         String usuario = "root";
-        String contrasena = "D45c41224!";
+        String contrasena = "mari122527";
         return DriverManager.getConnection(url, usuario, contrasena);
     }
 }
