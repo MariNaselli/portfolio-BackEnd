@@ -21,16 +21,20 @@ public class Conexion {
     // private String url = "jdbc:mysql://127.0.0.1:3306/portfolio_web";
     // private String username = "root";
     // private String password = "mari122527";
-
     public Conexion() {
-        
+
     }
 
     public static Connection getConnection() throws SQLException {
         // Conexión a la base de datos
+        //String url = "jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10606392";
+        //String usuario = "sql10606392";
+        //String contrasena = "4VMaa4kKyE";
+
         String url = "jdbc:mysql://127.0.0.1:3306/portfolio_web";
         String usuario = "root";
         String contrasena = "mari122527";
+
         return DriverManager.getConnection(url, usuario, contrasena);
     }
 }

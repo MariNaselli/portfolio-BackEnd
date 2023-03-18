@@ -102,7 +102,7 @@ public class SeccionDAO {
     public List<Seccion> obtenerSecciones() throws SQLException {
         List<Seccion> secciones = new ArrayList<>();
 
-        String sql = "select s.codigo_seccion, s.nombre_seccion, s.orden from secciones s ORDER BY S.orden";
+        String sql = "select s.codigo_seccion, s.nombre_seccion, s.orden from secciones s ORDER BY s.orden";
         try (Connection conn = Conexion.getConnection();
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)) {
