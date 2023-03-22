@@ -27,13 +27,9 @@ public class Conexion {
 
     public static Connection getConnection() throws SQLException {
         // Conexión a la base de datos
-        //String url = "jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10606392";
-        //String usuario = "sql10606392";
-        //String contrasena = "4VMaa4kKyE";
-
-        String url = "jdbc:mysql://127.0.0.1:3306/portfolio_web";
-        String usuario = "root";
-        String contrasena = "mari122527";
+        String url = "jdbc:mysql://u3g0v5ifv2f3tjfi:Hkmqa7jlTMABJi8TFD26@bsgymph2iqvvqrnia5pu-mysql.services.clever-cloud.com:3306/bsgymph2iqvvqrnia5pu";
+        String usuario = "u3g0v5ifv2f3tjfi";
+        String contrasena = "Hkmqa7jlTMABJi8TFD26";
 
         return DriverManager.getConnection(url, usuario, contrasena);
     }
