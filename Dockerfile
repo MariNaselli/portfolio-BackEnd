@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/miportfolio-0.0.1-SNAPSHOT.jar /app
 
 # Exponer el puerto en el que se ejecuta tu aplicación
-EXPOSE 9090
+EXPOSE 1989
 
 # Comando para ejecutar la aplicación al iniciar el contenedor
 CMD ["java", "-jar", "miportfolio-0.0.1-SNAPSHOT.jar"]
