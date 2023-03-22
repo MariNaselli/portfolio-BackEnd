@@ -12,19 +12,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Daskalos
- */
+
 public class ItemDAO {
-    
-    
-    Conexion conexion = new Conexion();
 
     public void eliminarItem(int codigoItem) throws SQLException {
         String sql = "UPDATE items SET eliminado = 1 WHERE codigo_item = ?";
 
-        try (Connection conn = conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = Conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, codigoItem);
             pstmt.executeUpdate();
         }
@@ -34,7 +28,7 @@ public class ItemDAO {
     String sql = "SELECT codigo_item, nombre, titulo, periodo, descripcion, url, nivel_progreso, eliminado, codigo_persona, codigo_seccion FROM items WHERE eliminado = 0";
     List<Item> listaItems = new ArrayList<>();
 
-    try (Connection conn = conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+    try (Connection conn = Conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
         try (ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 Item item = new Item(
@@ -62,7 +56,7 @@ public class ItemDAO {
     String sql = "SELECT codigo_item, nombre, titulo, periodo, descripcion, url, nivel_progreso, eliminado, codigo_persona, codigo_seccion FROM items WHERE codigo_item = ?";
     Item item = null;
 
-    try (Connection conn = conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+    try (Connection conn = Conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
         pstmt.setInt(1, codigo);
 
         try (ResultSet rs = pstmt.executeQuery()) {
@@ -94,7 +88,7 @@ public class ItemDAO {
     public void actualizarItem(Item item) throws SQLException {
     String sql = "UPDATE items SET nombre = ?, titulo = ?, periodo = ?, descripcion = ?, url = ?, nivel_progreso = ?, eliminado = ?, codigo_persona = ?, codigo_seccion = ? WHERE codigo_item = ?";
 
-    try (Connection conn = conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+    try (Connection conn = Conexion.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
         pstmt.setString(1, item.getNombre());
         pstmt.setString(2, item.getTitulo());
         pstmt.setString(3, item.getPeriodo());

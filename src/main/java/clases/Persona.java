@@ -4,12 +4,6 @@
  */
 package clases;
 
-import java.util.List;
-
-/**
- *
- * @author Daskalos
- */
 public class Persona {
 
     public int codigo;
