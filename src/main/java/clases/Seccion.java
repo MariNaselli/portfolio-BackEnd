@@ -4,11 +4,6 @@
  */
 package clases;
 
-/**
- *
- * @author Daskalos
- */
-import java.util.ArrayList;
 import java.util.List;
 
 public class Seccion {
