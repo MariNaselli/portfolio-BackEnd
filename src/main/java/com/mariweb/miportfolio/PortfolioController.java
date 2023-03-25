@@ -19,3 +19,5 @@ public class PortfolioController {
         return portfolioDAO.obtenerPortfolioPorCodigoPersona(codigoPersona);
     }
 }
+
+//gg
