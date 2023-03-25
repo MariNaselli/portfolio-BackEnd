@@ -43,32 +43,36 @@ public class ItemController {
 
     @PostMapping("/crear-item")
     public ResponseEntity<Item> crearItem(@RequestBody Item item) {
-        itemDAO.crearItem(item);
-        return new ResponseEntity<>(item, HttpStatus.CREATED);
+        try {
+            itemDAO.crearItem(item);
+            return new ResponseEntity<>(item, HttpStatus.CREATED);
+        } catch (SQLException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-@PutMapping("/actualizar-item/{codigo}")
-public ResponseEntity<Item> actualizarItem(@PathVariable int codigo, @RequestBody Item item) {
-    Item currentItem;
-    try {
-        currentItem = itemDAO.obtenerPorCodigo(codigo);
-        if (currentItem == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @PutMapping("/actualizar-item/{codigo}")
+    public ResponseEntity<Item> actualizarItem(@PathVariable int codigo, @RequestBody Item item) {
+        Item currentItem;
+        try {
+            currentItem = itemDAO.obtenerPorCodigo(codigo);
+            if (currentItem == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            currentItem.setNombre(item.getNombre());
+            currentItem.setTitulo(item.getTitulo());
+            currentItem.setPeriodo(item.getPeriodo());
+            currentItem.setDescripcion(item.getDescripcion());
+            currentItem.setUrl(item.getUrl());
+            currentItem.setNivel_progreso(item.getNivel_progreso());
+            currentItem.setCodigo_persona(item.getCodigo_persona());
+            currentItem.setCodigo_seccion(item.getCodigo_seccion());
+            itemDAO.actualizarItem(currentItem);
+            return new ResponseEntity<>(currentItem, HttpStatus.OK);
+        } catch (SQLException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        currentItem.setNombre(item.getNombre());
-        currentItem.setTitulo(item.getTitulo());
-        currentItem.setPeriodo(item.getPeriodo());
-        currentItem.setDescripcion(item.getDescripcion());
-        currentItem.setUrl(item.getUrl());
-        currentItem.setNivel_progreso(item.getNivel_progreso());
-        currentItem.setCodigo_persona(item.getCodigo_persona());
-        currentItem.setCodigo_seccion(item.getCodigo_seccion());
-        itemDAO.actualizarItem(currentItem);
-        return new ResponseEntity<>(currentItem, HttpStatus.OK);
-    } catch (SQLException e) {
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
-}
 
     @DeleteMapping("/eliminar-item/{codigo}")
     public ResponseEntity<Void> eliminarItem(@PathVariable int codigo) {
