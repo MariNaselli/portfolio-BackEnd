@@ -6,10 +6,6 @@ package clases;
 
 import java.util.List;
 
-/**
- *
- * @author Daskalos
- */
 public class Portfolio {
 
     private Persona persona;
